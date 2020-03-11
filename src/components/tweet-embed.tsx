@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MutableRefObject } from 'react';
 import { Linking, Animated } from 'react-native';
 import WebView, {
   WebViewNavigation,
@@ -6,6 +6,7 @@ import WebView, {
 } from 'react-native-webview';
 
 import { TwitterWidgetJSContext } from './twitter-widget-provider';
+import { useTwitterWidgetJS } from '../hooks/useTwitterWidgetJS';
 import { LoadingIndicator } from './loading-indicator';
 
 const aboutBlank = /about\:blank/;
@@ -21,8 +22,13 @@ const htmlTemplate = `
   </html>
 `;
 
-export const TweetEmbed: React.FC<{ tweetId: string }> = ({ tweetId }) => {
-  const { js } = React.useContext(TwitterWidgetJSContext);
+const useTweetEmbedMethods = ({
+  js,
+  tweetId,
+}: {
+  js: string | null;
+  tweetId: string;
+}) => {
   const [isLoading, setIsLoading] = React.useState(true);
 
   // dynamic css values
@@ -73,25 +79,65 @@ export const TweetEmbed: React.FC<{ tweetId: string }> = ({ tweetId }) => {
     `;
   }, [js, tweetId]);
 
-  return (
-    <>
-      <LoadingIndicator isLoading={isLoading} />
-      <Animated.View
-        style={{
-          height: height.current,
-          opacity: opacity.current,
-        }}>
-        {!!js && (
-          <WebView
-            ref={webViewHandle}
-            originWhitelist={['*']}
-            source={{ html: htmlTemplate }}
-            onMessage={handleMessage}
-            onNavigationStateChange={onNavigationStateChange}
-            injectedJavaScript={createTweet}
-          />
-        )}
-      </Animated.View>
-    </>
-  );
+  return {
+    createTweet,
+    onNavigationStateChange,
+    handleMessage,
+    isLoading,
+    webViewHandle,
+    height: height.current,
+    opacity: opacity.current,
+  };
+};
+
+const TweetPreview: React.FC<{
+  isLoading: boolean;
+  height: Animated.Value;
+  opacity: Animated.Value;
+  webViewHandle: MutableRefObject<WebView | null>;
+  handleMessage: (event: WebViewMessageEvent) => void;
+  onNavigationStateChange: ({ url }: WebViewNavigation) => void;
+  createTweet: string;
+}> = ({
+  isLoading,
+  height,
+  opacity,
+  webViewHandle,
+  handleMessage,
+  onNavigationStateChange,
+  createTweet,
+}) => (
+  <>
+    <LoadingIndicator isLoading={isLoading} />
+    <Animated.View
+      style={{
+        height: height,
+        opacity: opacity,
+      }}>
+      <WebView
+        ref={webViewHandle}
+        originWhitelist={['*']}
+        source={{ html: htmlTemplate }}
+        onMessage={handleMessage}
+        onNavigationStateChange={onNavigationStateChange}
+        injectedJavaScript={createTweet}
+      />
+    </Animated.View>
+  </>
+);
+
+export const TweetEmbedStandalone: React.FC<{ tweetId: string }> = ({
+  tweetId,
+}) => {
+  const js = useTwitterWidgetJS();
+  const methods = useTweetEmbedMethods({ js, tweetId });
+  return <TweetPreview {...methods} />;
+};
+
+export const TweetEmbedContextConsumer: React.FC<{ tweetId: string }> = ({
+  tweetId,
+}) => {
+  const { js } = React.useContext(TwitterWidgetJSContext);
+  const methods = useTweetEmbedMethods({ js, tweetId });
+  return <TweetPreview {...methods} />;
 };
