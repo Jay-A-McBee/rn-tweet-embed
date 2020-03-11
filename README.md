@@ -55,13 +55,12 @@ const template = `
       <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'>
       <script>
         window.twttr = (function(d, s, id) {
-          var js, fjs = d.getElementsByTagName(s)[0],
-            t = window.twttr || {};
-          if (d.getElementById(id)) return t;
-          js = d.createElement(s);
+          var head = d.getElementsByTagName(s)[0];
+          var t = window.twttr || {};
+          var js = d.createElement('script');
           js.id = id;
           js.src = "https://platform.twitter.com/widgets.js";
-          fjs.parentNode.insertBefore(js, fjs);
+          head.appendChild(js);
 
           t._e = [];
           t.ready = function(f) {
@@ -69,7 +68,7 @@ const template = `
           };
 
           return t;
-        }(document, "script", "twitter-wjs"));
+        }(document, "head", "twitter-wjs"));
       </script>
     </head>
     <body>
