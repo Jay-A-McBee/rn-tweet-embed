@@ -22,10 +22,12 @@ The WebView `source` prop accepts a uri string and a tweet url has the following
 
 ```javascript
 <WebView
-  source={{ uri: https://twitter.com/someTwitterHandle/status/1236076558693142528}}
+  source={{ uri: 'https://twitter.com/AkMcbell/status/1236076558693142528' }}
 />
 ```
 
-Hmm... I don't hate this. We're rendering a specific tweet, but we'll have to know the twitter user's handle (not impossible, but 100% necessary). The styling is also off. We're clerly in a browser window so it doesn't feel quite right. The tweet might get cut off vertically and we don't have an exposed method to measure this DOM node and adjust accordingly.
+![naive](https://github.com/Jay-A-McBee/rn-tweet-embed/blob/master/naive.png?raw=true)
+
+Hmm... I don't hate this. We're rendering a specific tweet, but we'll have to know the twitter user's handle (not impossible, but 100% necessary). The styling is also off. We're clerly in a browser window so it doesn't feel quite right. The tweet might get cut off vertically and we don't have an exposed method to measure this DOM node and adjust accordingly. Dynamically updating height is clearly going to be a concern. Let's keep this impl in our hip pocket - it's ugly and forces us to need more info about the tweet, but, in a pinch, it might work.
 
 ![twitter embed](https://github.com/Jay-A-McBee/rn-tweet-embed/blob/master/twitter-embed.gif?raw=true)
