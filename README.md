@@ -13,7 +13,9 @@ We can seemlessly embed a tweet on the cheap with a simple WebView component and
 # Naive to Goodish to Good
 
 Ok, so this is about problem solving. No doubt the tweet embed evokes the same sense of accomplishment I get from a freshly mown lawn, but this is about the ride. I solve problems by first doing it the simplest and most naive way possible. If we were making paper airplanes, this is my iteration 1.
-![v 1](https://www.rightlivelihoodquest.com/wp-content/uploads/2018/09/crumpled-paper-ball.jpg| width=250)
+
+<img src='https://www.rightlivelihoodquest.com/wp-content/uploads/2018/09/crumpled-paper-ball.jpg' width='500'>
+
 It will fly if thrown hard enough. It's not very efficient or streamlined and it certainly won't glide gracefully to a stop. But, it checks all boxes in terms of going from point A to B in the air. Once all this "badness" is out in the open, we can start to improve the implementation without the fear of a failed outcome - I mean this **literal** piece of garbage already flies.
 
 # Just load the tweet's status url
@@ -26,7 +28,7 @@ The WebView `source` prop accepts a uri string and a tweet url has the following
 />
 ```
 
-![naive](https://github.com/Jay-A-McBee/rn-tweet-embed/blob/master/naive.png?raw=true&s=250)
+<img src='https://github.com/Jay-A-McBee/rn-tweet-embed/blob/master/naive.png?raw=true' width='500'>
 
 Hmm... I don't hate this. We're rendering a specific tweet, but we'll have to know the twitter user's handle (not impossible, but 100% necessary). The styling is also off. We're clerly in a browser window so it doesn't feel quite right. The tweet might get cut off vertically and we don't have an exposed method to measure this DOM node and adjust accordingly. Dynamically updating height is clearly going to be a concern. Let's keep this impl in our hip pocket - it's ugly and forces us to need more info about the tweet, but, in a pinch, it might work.
 
