@@ -1,5 +1,5 @@
 import React from 'react';
-import { Linking, Animated, TouchableOpacity } from 'react-native';
+import { Linking, Animated } from 'react-native';
 import WebView, {
   WebViewNavigation,
   WebViewMessageEvent,
