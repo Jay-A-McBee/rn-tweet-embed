@@ -25,8 +25,9 @@ export const TweetEmbed: React.FC<{ tweetId: string }> = ({ tweetId }) => {
   const { js } = React.useContext(TwitterWidgetJSContext);
   const [isLoading, setIsLoading] = React.useState(true);
 
+  // dynamic css values
   const height = React.useRef(new Animated.Value(200));
-  const webviewOpacity = React.useRef(new Animated.Value(0));
+  const opacity = React.useRef(new Animated.Value(0));
   // access to stopLoading method
   const webViewHandle = React.useRef<WebView>(null);
 
@@ -35,7 +36,7 @@ export const TweetEmbed: React.FC<{ tweetId: string }> = ({ tweetId }) => {
       Animated.timing(height.current, {
         toValue: parseInt(event.nativeEvent.data, 10) + 20,
       }),
-      Animated.timing(webviewOpacity.current, {
+      Animated.timing(opacity.current, {
         toValue: 1,
       }),
     ]).start();
@@ -78,7 +79,7 @@ export const TweetEmbed: React.FC<{ tweetId: string }> = ({ tweetId }) => {
       <Animated.View
         style={{
           height: height.current,
-          opacity: webviewOpacity.current,
+          opacity: opacity.current,
         }}>
         {!!js && (
           <WebView

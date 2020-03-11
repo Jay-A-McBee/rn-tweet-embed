@@ -3,47 +3,48 @@ import AsyncStorage from '@react-native-community/async-storage';
 import RNFetchBlob, { FetchBlobResponse } from 'rn-fetch-blob';
 
 enum StorageIdentifier {
-  Script = 'twitterWidgetScript',
-  SaveDate = 'saveDate',
+  Script = '@twitterWidgetScript',
+  SaveDate = '@saveDate',
 }
 
 const TWITTER_WIDGET_URL = 'https://platform.twitter.com/widgets.js';
 
 // cache invalidation - redownload the script when local version is a week old
 const todayInMS = Date.now();
-const millisecondsPerDay = 1000 * 60 * 60 * 24;
-const msToDays = (time: number) => time / millisecondsPerDay;
+const MS_PER_DAY = 1000 * 60 * 60 * 24;
 const diffTime = (saveTime: number, now: number) =>
-  msToDays(now) - msToDays(saveTime);
+  now / MS_PER_DAY - saveTime / MS_PER_DAY;
 
 export const useTwitterWidgetJS = () => {
   const [widgetJS, setWidgetJS] = React.useState<string | null>(null);
 
   const checkLocalStorage = React.useCallback(() => {
-    return Promise.all([
-      AsyncStorage.getItem(StorageIdentifier.Script),
-      AsyncStorage.getItem(StorageIdentifier.SaveDate),
+    return AsyncStorage.multiGet([
+      StorageIdentifier.Script,
+      StorageIdentifier.SaveDate,
     ]);
   }, []);
 
   const saveToLocalStorage = React.useCallback(
     (script: string, date: string) => {
-      AsyncStorage.setItem(StorageIdentifier.Script, script);
-      AsyncStorage.setItem(StorageIdentifier.SaveDate, date);
+      AsyncStorage.multiSet([
+        [StorageIdentifier.Script, script],
+        [StorageIdentifier.SaveDate, date],
+      ]);
     },
     [],
   );
 
   const getScript = React.useCallback(async () => {
-    const [script, saveDate] = await checkLocalStorage();
-    if (saveDate && diffTime(parseInt(saveDate, 10), todayInMS) < 30) {
+    const [[, script], [, saveDate]] = await checkLocalStorage();
+
+    if (saveDate && diffTime(parseInt(saveDate, 10), todayInMS) < 7) {
       setWidgetJS(script);
     } else {
       const { data }: FetchBlobResponse = await RNFetchBlob.fetch(
         'GET',
         TWITTER_WIDGET_URL,
       );
-
       saveToLocalStorage(data, todayInMS.toString());
       setWidgetJS(data);
     }
