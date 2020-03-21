@@ -100,9 +100,9 @@ This is looking much better. Height will still be an issue when we've got more e
 
 In terms of paper airplane tech, I'd say we're about here:
 
-![mach 2](// todo get airplane picture)
+![mach 2](https://www.nsta.org/main/news/stories/images/sc/0302/home4.gif)
 
-Whoa! This is no paper wad. We've got some configurability - checkout those wings. Still lacking some essential renfinement, but we're 90% there.
+Whoa! This is no paper wad. We've got configuration - look at all those folds. Still lacking some essential renfinement, but we're 90% there.
 
 ## In the words of Walter Sobchack - "Let's take that hill!"
 
@@ -235,9 +235,11 @@ const diffTime = (saveTime: number, now: number) =>
 
 We're not only loading the script a single time - we're loading the script once a week! :rocket: - AsyncStorage is just one option. We could use `rn-fetch-blob` to both save the script to the cache of the device and read the script from the cache in our hook. Far be it from me from telling anyone how to run their cache.
 
-After a number of severe paper-cuts, we're now here reeling in origamic bliss:
+After a number of semi-severe paper-cuts, we're now here reeling in origamic bliss:
 
-//TODO paper airplane
+![mach 3](https://3.bp.blogspot.com/-QCtcFBgXE4U/UGmkXECP3FI/AAAAAAAAAXc/po3uIqoKbAQ/s1600/Paper-plane.jpg)
+
+Zipping through the air without a care in the world!!
 
 ## Let's do some "bell and whistle" type shit
 
