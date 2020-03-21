@@ -233,13 +233,11 @@ const diffTime = (saveTime: number, now: number) =>
   }, [checkLocalStorage, saveToLocalStorage]);
 ```
 
-We're not only loading the script a single time - we're loading the script once a week! :rocket: - AsyncStorage is just one option. We could use `rn-fetch-blob` to both save the script to the cache of the device and read the script from the cache in our hook. Far be it from me from telling anyone how to run their cache.
+We're not only loading the script a single time - we're loading the script once a week :rocket: - AsyncStorage is just one option. We could use `rn-fetch-blob` to both save the script to the cache of the device and read the script from the cache in our hook. Far be it from me from telling anyone how to run their cache.
 
-After a number of semi-severe paper-cuts, we're now here reeling in origamic bliss:
+After a number of semi-severe paper-cuts, we're now here reeling in origamic bliss and zipping through the air without a care in the world.
 
 ![mach 3](https://3.bp.blogspot.com/-QCtcFBgXE4U/UGmkXECP3FI/AAAAAAAAAXc/po3uIqoKbAQ/s1600/Paper-plane.jpg)
-
-Zipping through the air without a care in the world!!
 
 ## Let's do some "bell and whistle" type shit
 
