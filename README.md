@@ -108,7 +108,7 @@ Whoa! This is no paper wad. We've got configuration - look at all those folds. S
 
 So we need to make sure we only download the script a single time. I don't think our script tag in the template is going to be of much use. Let's chuck it.
 
-```
+```html
   const htmlTemplate = `
     <html>
       <head>
@@ -123,7 +123,7 @@ So we need to make sure we only download the script a single time. I don't think
 
 We're going to use the `rn-fetch-blob` library to load the twitter widget script - let's whip up a quick hook for that.
 
-```
+```js
 const TWITTER_WIDGET_URL = 'https://platform.twitter.com/widgets.js';
 
 export const useTwitterWidgetJS = () => {
@@ -151,7 +151,7 @@ export const useTwitterWidgetJS = () => {
 
 We're still faced with the dilemma of only wanting to do this a single time meaning that we can't just throw our hook into the `TweetPreview` and call it good. Hmm... this sounds like something we can solve with `React.Context`.
 
-```
+```js
 export const TwitterWidgetJSContext = React.createContext<{
   js: string | null;
 }>({
@@ -161,7 +161,7 @@ export const TwitterWidgetJSContext = React.createContext<{
 
 our exported Provider and how we'll use it
 
-```
+```js
 const TwitterWidgetJSProvider: React.FC<{
   children: JSX.Element;
 }> = ({ children }) => {
@@ -193,7 +193,7 @@ So we've somewhat solved that problem. We won't have to fetch the script for eve
 
 Some new/updated methods and constants in our `useTwitterWidgetJS` hook.
 
-```
+```js
 // cache invalidation - redownload the script when local version is a week old
 const todayInMS = Date.now();
 const MS_PER_DAY = 1000 * 60 * 60 * 24;
