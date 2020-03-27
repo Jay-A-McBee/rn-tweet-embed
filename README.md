@@ -32,7 +32,7 @@ The WebView `source` prop accepts a uri string and a tweet url has the following
 
 <img src='https://github.com/Jay-A-McBee/rn-tweet-embed/blob/master/naive.png' width='250'>
 
-Hmm... I don't hate this. We're rendering a specific tweet - an indisputable fact. Unfortunatley, we'll have to know the twitter user's handle (not impossible, but 100% required). The styling is also off. We're clerly in a browser window so it doesn't feel quite right. The tweet might get cut off vertically and we don't have an exposed method to measure this DOM node and adjust accordingly. _Dynamically updating height is going to be a concern_. Let's keep this impl in our hip pocket - it's ugly and forces us to need more info about the tweet. Nevertheless, we got here pretty quickly and, in a pinch, it might work.
+Hmm... I don't hate this. We're rendering a specific tweet - an indisputable fact. Unfortunately, we'll have to know the twitter user's handle (not impossible, but 100% required). The styling is also off. We're clearly in a browser window so it doesn't feel quite right. The tweet might get cut off vertically and we don't have an exposed method to measure this DOM node and adjust accordingly. _Dynamically updating height is going to be a concern_. Let's keep this impl in our hip pocket - it's ugly and forces us to need more info about the tweet. Nevertheless, we got here pretty quickly and, in a pinch, it might work.
 
 ## Let's do some research
 
