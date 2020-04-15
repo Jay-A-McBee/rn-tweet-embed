@@ -106,30 +106,38 @@ const TweetPreview: React.FC<{
   handleMessage,
   onNavigationStateChange,
   createTweet,
-}) => (
-  <>
-    <LoadingIndicator isLoading={isLoading} />
-    <Animated.View
-      style={{
-        height: height,
-        opacity: opacity,
-      }}>
-      <WebView
-        ref={webViewHandle}
-        originWhitelist={['*']}
-        source={{ html: htmlTemplate }}
-        onMessage={handleMessage}
-        onNavigationStateChange={onNavigationStateChange}
-        injectedJavaScript={createTweet}
-      />
-    </Animated.View>
-  </>
-);
+}) => {
+
+    React.useEffect(() => {
+      if (webViewHandle.current) {
+        webViewHandle.current.injectJavaScript(createTweet);
+      }
+    }, [createTweet]);
+
+    return (
+      <>
+        <LoadingIndicator isLoading={isLoading} />
+        <Animated.View
+          style={{
+            height: height,
+            opacity: opacity,
+          }}>
+          <WebView
+            ref={webViewHandle}
+            originWhitelist={['*']}
+            source={{ html: htmlTemplate }}
+            onMessage={handleMessage}
+            onNavigationStateChange={onNavigationStateChange}
+          />
+        </Animated.View>
+      </>
+    )
+  };
 
 export const TweetEmbedStandalone: React.FC<{ tweetId: string }> = ({
   tweetId,
 }) => {
-  const js = useTwitterWidgetJS();
+  const { widgetJS: js, error } = useTwitterWidgetJS();
   const methods = useTweetEmbedMethods({ js, tweetId });
   return <TweetPreview {...methods} />;
 };
