@@ -10,11 +10,11 @@ import TwitterWidgetJSProvider from './components/twitter-widget-provider';
 const Example: React.FC = () => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <TwitterWidgetJSProvider>
+      {/* <TwitterWidgetJSProvider>
         <View>
           <TweetEmbedContextConsumer tweetId={'1236076554909872128'} />
         </View>
-      </TwitterWidgetJSProvider>
+      </TwitterWidgetJSProvider> */}
       <View>
         <TweetEmbedStandalone tweetId={'1216914559937716225'} />
       </View>

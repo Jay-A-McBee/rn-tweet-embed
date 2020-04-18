@@ -4,17 +4,22 @@ import { useTwitterWidgetJS } from '../hooks/useTwitterWidgetJS';
 
 export const TwitterWidgetJSContext = React.createContext<{
   js: string | null;
+  error: string | null;
 }>({
   js: null,
+  error: null
 });
 
 const TwitterWidgetJSProvider: React.FC<{
   children: JSX.Element;
 }> = ({ children }) => {
-  const widgetJS = useTwitterWidgetJS();
-  const value = React.useMemo<{ js: string | null }>(
+
+  const { widgetJS, error } = useTwitterWidgetJS();
+
+  const value = React.useMemo<{ js: string | null, error: string | null }>(
     () => ({
       js: widgetJS,
+      error
     }),
     [widgetJS],
   );
