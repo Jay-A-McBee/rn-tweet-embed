@@ -10,11 +10,9 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
-    "@react-native-community/async-storage": "^1.8.1",
     "react": "16.9.0",
     "react-native": "^0.62.2",
     "react-native-webview": "^8.1.2",
-    "rn-fetch-blob": "^0.12.0"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",
