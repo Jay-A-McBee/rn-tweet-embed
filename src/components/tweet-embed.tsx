@@ -33,7 +33,7 @@ const useTweetEmbedMethods = ({
 
   // dynamic css values
   const height = React.useRef(new Animated.Value(200));
-  const opacity = React.useRef(new Animated.Value(0));
+  const opacity = React.useRef(new Animated.Value(1));
   // access to stopLoading method
   const webViewHandle = React.useRef<WebView>(null);
 
@@ -41,9 +41,11 @@ const useTweetEmbedMethods = ({
     Animated.parallel([
       Animated.timing(height.current, {
         toValue: parseInt(event.nativeEvent.data, 10) + 20,
+        useNativeDriver: false
       }),
       Animated.timing(opacity.current, {
         toValue: 1,
+        useNativeDriver: false
       }),
     ]).start();
     setIsLoading(false);
@@ -64,7 +66,7 @@ const useTweetEmbedMethods = ({
   );
 
   const createTweet = React.useMemo(() => {
-    return `
+    return js ? `
       ${js}
 
       twttr.widgets.createTweet(
@@ -72,11 +74,15 @@ const useTweetEmbedMethods = ({
         document.getElementById('wrapper'),
         { align: 'center' }
       ).then(el => {
-        window.ReactNativeWebView.postMessage(el.offsetHeight);
+        if(window.ReactNativeWebView){
+          window.ReactNativeWebView.postMessage(el.offsetHeight);
+        }else{
+          window.postMessage(el.offsetHeight);
+        }
       })
       
       true;
-    `;
+    ` : '';
   }, [js, tweetId]);
 
   return {
