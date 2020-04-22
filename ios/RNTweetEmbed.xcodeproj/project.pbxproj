@@ -20,7 +20,8 @@
 		BC0651D55E3997D78A178AEE /* libPods-RNTweetEmbed-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22E21267217D991C9A13E330 /* libPods-RNTweetEmbed-tvOSTests.a */; };
 		C4145CFF843ECB47124C414C /* libPods-RNTweetEmbed-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19E58381987D3E998AD18534 /* libPods-RNTweetEmbed-tvOS.a */; };
 		C4C079D830204912661C3FAF /* libPods-RNTweetEmbed.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 37C11645F16F7BF36DE7EA17 /* libPods-RNTweetEmbed.a */; };
-		D954DC94244E5F2A00024B00 /* TwitterWidgetJSManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D954DC93244E5F2A00024B00 /* TwitterWidgetJSManager.m */; };
+		D926181E2450ECA900D62BE1 /* TwitterEmbedViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D926181D2450ECA900D62BE1 /* TwitterEmbedViewManager.m */; };
+		D9A1F2AE244FCB1700E8DAE6 /* TwitterWidgetJSManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D954DC95244E5F5400024B00 /* TwitterWidgetJSManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,8 +66,10 @@
 		A2DB5414163E09D65333BC58 /* Pods-RNTweetEmbed.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNTweetEmbed.release.xcconfig"; path = "Target Support Files/Pods-RNTweetEmbed/Pods-RNTweetEmbed.release.xcconfig"; sourceTree = "<group>"; };
 		A2DF1B491E9D2443BB50C6E2 /* Pods-RNTweetEmbedTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNTweetEmbedTests.debug.xcconfig"; path = "Target Support Files/Pods-RNTweetEmbedTests/Pods-RNTweetEmbedTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AB6AD1E756F2108E3E3FBADE /* Pods-RNTweetEmbed-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNTweetEmbed-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-RNTweetEmbed-tvOSTests/Pods-RNTweetEmbed-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		D954DC93244E5F2A00024B00 /* TwitterWidgetJSManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TwitterWidgetJSManager.m; sourceTree = "<group>"; };
-		D954DC95244E5F5400024B00 /* TwitterWidgetJSManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TwitterWidgetJSManager.h; sourceTree = "<group>"; };
+		D926181C2450EC8D00D62BE1 /* TwitterEmbedViewManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TwitterEmbedViewManager.h; sourceTree = "<group>"; };
+		D926181D2450ECA900D62BE1 /* TwitterEmbedViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TwitterEmbedViewManager.m; sourceTree = "<group>"; };
+		D954DC93244E5F2A00024B00 /* TwitterWidgetJSManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TwitterWidgetJSManager.h; path = RNTweetEmbed/TwitterWidgetJSManager.h; sourceTree = "<group>"; };
+		D954DC95244E5F5400024B00 /* TwitterWidgetJSManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = TwitterWidgetJSManager.m; path = RNTweetEmbed/TwitterWidgetJSManager.m; sourceTree = SOURCE_ROOT; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		EFE2580D078F5BE3BBFD2ED9 /* Pods-RNTweetEmbed-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNTweetEmbed-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-RNTweetEmbed-tvOS/Pods-RNTweetEmbed-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -135,8 +138,10 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
-				D954DC93244E5F2A00024B00 /* TwitterWidgetJSManager.m */,
-				D954DC95244E5F5400024B00 /* TwitterWidgetJSManager.h */,
+				D954DC93244E5F2A00024B00 /* TwitterWidgetJSManager.h */,
+				D954DC95244E5F5400024B00 /* TwitterWidgetJSManager.m */,
+				D926181C2450EC8D00D62BE1 /* TwitterEmbedViewManager.h */,
+				D926181D2450ECA900D62BE1 /* TwitterEmbedViewManager.m */,
 			);
 			name = RNTweetEmbed;
 			sourceTree = "<group>";
@@ -533,8 +538,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D954DC94244E5F2A00024B00 /* TwitterWidgetJSManager.m in Sources */,
+				D9A1F2AE244FCB1700E8DAE6 /* TwitterWidgetJSManager.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				D926181E2450ECA900D62BE1 /* TwitterEmbedViewManager.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

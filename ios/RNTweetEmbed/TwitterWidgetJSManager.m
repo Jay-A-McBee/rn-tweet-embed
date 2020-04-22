@@ -14,6 +14,7 @@ NSString * widgetJS = nil;
 
 RCT_EXPORT_MODULE();
 
+
 RCT_REMAP_METHOD(fetchWidgetJS,
                  fetchWidgetJSWithResolver:(RCTPromiseResolveBlock)resolve
                  rejecter: (RCTPromiseRejectBlock)reject)

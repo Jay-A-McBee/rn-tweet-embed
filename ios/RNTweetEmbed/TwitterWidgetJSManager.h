@@ -9,4 +9,7 @@
 #import <React/RCTBridgeModule.h>
 
 @interface TwitterWidgetJSManager : NSObject <RCTBridgeModule>
+
+@property (nonatomic) NSString * widgetJS;
+@property (nonatomic) NSString * tweetId;
 @end

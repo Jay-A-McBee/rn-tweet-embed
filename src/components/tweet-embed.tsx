@@ -67,13 +67,15 @@ const TweetEmbed: React.FC<{ tweetId: string }> = ({ tweetId }) => {
     return `
      ${widgetJS}
 
-      twttr.widgets.createTweet(
-        '${tweetId}',
-        document.getElementById('wrapper'),
-        { align: 'center' }
-      ).then(el => {
-          window.ReactNativeWebView.postMessage(el.offsetHeight);
-      })
+     try{
+       twttr.widgets.createTweet(
+         '${tweetId}',
+         document.getElementById('wrapper'),
+         { align: 'center' }
+       ).then(el => {
+           window.ReactNativeWebView.postMessage(el.offsetHeight);
+       })
+     }catch(e){}
       
       true
     `
